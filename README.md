@@ -1,6 +1,6 @@
 # How to run
 
-0. this project was build with python 3.8. run:
+0. this project was built with python 3.8. run:
 ```buildoutcfg
 pip install -r requirements.txt
 ```
