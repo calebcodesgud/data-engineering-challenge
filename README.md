@@ -1,5 +1,10 @@
 # How to run
 
+0. this project was build with python 3.8. run:
+```buildoutcfg
+pip install -r requirements.txt
+```
+
 1. Download and install postgresql for windows from here https://get.enterprisedb.com/postgresql/postgresql-14.1-1-windows-x64.exe
 ```buildoutcfg
 username: postgres
