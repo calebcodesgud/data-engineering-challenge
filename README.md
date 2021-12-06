@@ -1,34 +1,41 @@
-# Data Engineering Challenge
+# How to run
 
-Welcome to our Data Engineering Challenge repository. This README will guide you on how to participate in this challenge.
+1. Download and install postgresql for windows from here https://get.enterprisedb.com/postgresql/postgresql-14.1-1-windows-x64.exe
+```buildoutcfg
+username: postgres
+password: password
+```
+2. Add the PostgreSQL bin directory path to the PATH environmental variable.
 
-Please fork this repo before you start working on the challenge. We will evaluate the code on the fork.
+3. in windows terminal run:
+```buildoutcfg
+psql -U postgres
+```
+and enter your password
 
-### Challenge
+4. in the postgresql command line run
+```buildoutcfg
+CREATE DATABASE myDatabase WITH ENCODING 'UTF8' LC_COLLATE='English_United States' LC_CTYPE='English_United States';
+\quit
+```
+5. in the windows terminal run 
+```buildoutcfg
+pg_ctl -D "<path to postgres data dir>/data" start
+```
 
-1. Create a scraper for [apartmentlist.com](https://www.apartmentlist.com/) and collect the zip code, property amenities, unit amenities, number of beds, rent and sqft for all listings in [Evanston](https://www.apartmentlist.com/il/evanston). If a listing has multiple units, treat each unit as its own listing. 
-    * Hint: Interact with the website a bit. Change pages and click on listings and monitor some of the network activity. See if you can use any of their network calls to make a more efficient scraper than doing one at a time. (Bonus)
+6. run setUpDb.py in the project directory to create the tables
 
-2. Save all of this data to your choice of database. (Using SQLite will make it difficult to write the second query so we recommend against using this one)
+7. run main.py
 
-3. Write two queries to answer the following questions:
-   * For each of the property and unit amenities, list the number of properties each appear on? An example output might look like:
-   
-   ```
-   Hardwood Floors,800
-   Parking,600
-   Gym,200
-   ```
-   * For each zip code in Evanston, what is the average rent per sqft for each number of bed? An example output might look like:
-   
-   ```
-   60201,3,1.67
-   60201,2,1.43
-   60209,3,1.65
-   60209,2,1.48
-   ```
+8. in the windows terminal run 
+```buildoutcfg
+pg_ctl -D "<path to postgres data dir>/data" stop
+```
 
-### Requirements
-1. A script written with any programming language that scrapes the data and uploads it to your database
-2. A file with the two queries that answer our questions about the data
-3. An explanation for how to run your solution
+Note: if you run into issues running the webdriver, please install the most recent version of chrome. this requires chrome version 96.*
+
+it's also possible you may have to add the line
+```buildoutcfg
+host  	all  		all 		0.0.0.0/0 		md5
+```
+to the end of data/pg_hba.conf in you postgres install. I was having issues connection from the application and i don't really know if this helped or not...
